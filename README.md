@@ -19,6 +19,7 @@ Build an autonomous weather monitoring station initially using an ESP32 and BME2
 - [ ] Python Flask server
 - [ ] Database storage
 - [ ] 3D printed casing
+- [ ] Indoor and Outdoor BME280
 - [ ] Moving from breadboard to perfboard
 - [ ] Machine learning model
 
@@ -27,3 +28,6 @@ Build an autonomous weather monitoring station initially using an ESP32 and BME2
 - Solar power
 - Deep sleep optimisation
 - Additional sensors
+- Indoor sensor
+- LED display
+-

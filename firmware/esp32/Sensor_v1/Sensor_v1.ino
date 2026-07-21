@@ -12,52 +12,46 @@ This code is in the Public Domain
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
-#include <esp_sleep.h>
 
-// Create BME280 object
+// create BME280 object
 Adafruit_BME280 bme;
 
-// I²C pins
-const int SCLPin = 9;
+// set pins used on ESP32
 const int SDAPin = 8;
+const int SCLPin = 9;
 
-// Time between readings (milliseconds)
-const unsigned long delayTime = 10000;
+//variable containing delay between readings
+const int delayTime = 300000;
 
 void setup() {
-  Serial.begin(115200);
-  delay(10000);
+  Serial.begin(115200); //set to baud rate 115200
 
-  // Initialize I²C
-  Wire.begin(SDAPin, SCLPin);
+  Wire.begin(SDAPin, SCLPin); //Begin I2C communication
 
-  // Initialize the BME280
-  if (!bme.begin(0x76)) {
-    Serial.println("Could not find a valid BME280 sensor. Check wiring!");
-    while (1);
+  if (bme.begin(0x76) == false) {
+    Serial.println("Could not connect to BME280 sensor"); //checks for successful connection
   }
-
-  Serial.println("BME280 initialized successfully.");
-  Serial.println();
+  Serial.println("BME280 connected successfully");
 }
 
-void loop() {
-  printValues();
-  delay(delayTime);
-}
-
-void printValues() {
-  Serial.print("Temperature = ");
+//utilising bme functions to access and print temperature, humidity, and pressure under the function printValues()
+void printValues() { 
+  Serial.print("Temperature: ");
   Serial.print(bme.readTemperature());
-  Serial.println(" °C");
+  Serial.println(" ˚C");
 
-  Serial.print("Pressure = ");
-  Serial.print(bme.readPressure() / 100.0F);
-  Serial.println(" hPa");
-
-  Serial.print("Humidity = ");
+  Serial.print("Humidity: ");
   Serial.print(bme.readHumidity());
   Serial.println(" %");
 
+  Serial.print("Pressure: ");
+  Serial.print(bme.readPressure() / 100.0F);
+  Serial.println(" hPa");
+}
+
+//loops print with 5 minute delay
+void loop() {
+  printValues();
+  delay(delayTime);
   Serial.println();
 }
