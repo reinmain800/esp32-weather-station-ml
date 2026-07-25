@@ -29,7 +29,6 @@ const int delayTime = 300000;
 const char* ssid = "YOUR SSID";
 const char* password = "YOUR PASSWORD";
 
-const char* serverName = "http://YOUR_IP_ADRESS:5000/receive_data"; // server name
 
 
 void setup() {
