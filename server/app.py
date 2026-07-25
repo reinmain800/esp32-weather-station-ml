@@ -10,9 +10,11 @@ def receive_data():
         return "No JSON received", 400
 
     print(
+        "\n"
         f"Temperature: {data['temperature']} °C\n"
         f"Humidity: {data['humidity']} %\n"
         f"Pressure: {data['pressure']} hPa"
+        "\n"
     )
 
     return "Data received", 202
