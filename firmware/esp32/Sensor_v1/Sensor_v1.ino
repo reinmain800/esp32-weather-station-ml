@@ -22,13 +22,11 @@ Adafruit_BME280 bme;
 const int SDAPin = 8;
 const int SCLPin = 9;
 
-//constant containing delay between readings
-const int delayTime = 300000;
-
 //assigning values to wifi ssid and password
-const char* ssid = "YOUR SSID";
-const char* password = "YOUR PASSWORD";
+const char* ssid = "reinmain";
+const char* password = "reinmain800";
 
+const char* serverName = "http://192.168.110.191:5000/receive_data"; // server name
 
 
 void setup() {
@@ -64,7 +62,7 @@ void setup() {
   if (bme.begin(0x76) == false) {
     Serial.println("Could not connect to BME280 sensor"); //checks for successful connection
   }
-  Serial.println("BME280 connected successfully");
+
 }
 
 
@@ -93,13 +91,22 @@ void sendData(float temperature, float humidity, float pressure) {
 }
 
 
+//setting up delay between measurements
+unsigned long previousTime = 0;
+const unsigned long interval = 300000; 
+
+
 //sends json packets with 5 minute delay
 void loop() {
-  float temperature = bme.readTemperature();
-  float humidity = bme.readHumidity();
-  float pressure = bme.readPressure() / 100.0F;
-  Serial.println();
-  sendData(temperature, humidity, pressure);
-  Serial.println();
-  delay(delayTime);
+  unsigned long currentTime = millis();
+
+  if (currentTime - previousTime >= interval) {
+    float temperature = bme.readTemperature();
+    float humidity = bme.readHumidity();
+    float pressure = bme.readPressure() / 100.0F;
+    Serial.println();
+    sendData(temperature, humidity, pressure);
+    previousTime = currentTime;
+  }
+  delay(100);
 }
