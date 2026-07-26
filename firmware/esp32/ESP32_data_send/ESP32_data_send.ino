@@ -39,8 +39,6 @@ void setup() {
   Wire.begin(SDAPin, SCLPin); //Begin I2C communication
   WiFi.begin(ssid, password); //connecting to wifi
 
-  unsigned long startTime = millis(); //initialise millisecond timer
-
   //waits for wifi connection
   while (WiFi.status() != WL_CONNECTED) { 
     delay(5);
