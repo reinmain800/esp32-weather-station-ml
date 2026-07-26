@@ -27,10 +27,10 @@ const int TIME_OF_SLEEP = 300;
 unsigned long long uS_TO_S_FACTOR = 1000000; //factor to convert from microseconds  to seconds 
 
 //assigning values to wifi ssid and password
-const char* ssid = "reinmain";
-const char* password = "reinmain800";
+const char* ssid = "YOUR SSID";
+const char* password = "YOUR PASSWORD";
 
-const char* serverName = "http://192.168.110.191:5000/receive_data"; // server name
+const char* serverName = "http://YOUR_FLASK_IP_ADDRESS/receive_data"; // server name
 
 
 void setup() {

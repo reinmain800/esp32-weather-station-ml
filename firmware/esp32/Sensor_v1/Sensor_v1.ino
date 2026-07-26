@@ -23,10 +23,10 @@ const int SDAPin = 8;
 const int SCLPin = 9;
 
 //assigning values to wifi ssid and password
-const char* ssid = "reinmain";
-const char* password = "reinmain800";
+const char* ssid = "YOUR SSID";
+const char* password = "YOUR PASSWORD";
 
-const char* serverName = "http://192.168.110.191:5000/receive_data"; // server name
+const char* serverName = "http://YOUR_FLASK_SERVER_ADDRESS/receive_data"; // server name
 
 
 void setup() {
