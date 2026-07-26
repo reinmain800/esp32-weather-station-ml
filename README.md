@@ -17,16 +17,15 @@ Build an autonomous weather monitoring station initially using an ESP32 and BME2
 - [x] BME280 communication
 - [x] Python Flask server
 - [x] Wi-Fi data transmission
+- [X] ESP32 deep sleep energy usage reduction
 - [ ] Storing data in SQLite database
+- [ ] Custom Rain Gauge
+- [ ] Implement wind vane and anemometer
 - [ ] 3D printed casing
 - [ ] Indoor and Outdoor BME280
 - [ ] Soldering components
 - [ ] Machine learning model
 
 ## Future Improvements
-- Reducing energy consumption 
 - Solar power
-- Deep sleep optimisation
-- Additional sensors (Anemometer, Wind Vane, and Rain Gauge)
-- LED display
-- Go from HTTP Get and Post to LoRa module
+- Go from HTTP POST using a Flask server to LoRa module 
