@@ -4,7 +4,7 @@ by Maximilian Can Mueller
 2026
 
 Receives Temperature, Pressure, and Humidity readings
-from a BME280 and prints them to the Serial Monitor.
+from a BME280 and sends to flask server.
 
 This code is in the Public Domain
 */
@@ -27,10 +27,10 @@ const int TIME_OF_SLEEP = 300;
 unsigned long long uS_TO_S_FACTOR = 1000000; //factor to convert from microseconds  to seconds 
 
 //assigning values to wifi ssid and password
-const char* ssid = "YOUR SSID";
-const char* password = "YOUR PASSWORD";
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
 
-const char* serverName = "http://YOUR_FLASK_IP_ADDRESS/receive_data"; // server name
+const char* serverName = "http://YOUR_FLASK_IP:5000/receive_data"; // server name
 
 
 void setup() {
@@ -56,6 +56,10 @@ void setup() {
 
   //sendData function
   sendData(temperature, humidity, pressure);
+
+  //disconnect from WiFi
+  WiFi.disconnect(true);
+  WiFi.mode(WIFI_OFF);
 
   //initialises deep sleep to save power
   esp_sleep_enable_timer_wakeup(TIME_OF_SLEEP * uS_TO_S_FACTOR);  
